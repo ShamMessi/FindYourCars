@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container my-5 d-flex justify-content-center">
+
+    <div class="card shadow-lg p-5" style="width: 60%;">
+        <h2 class="text-center fw-bold mb-4">EMI Calculator</h2>
+
+        <!-- READ ONLY PRODUCT INFO -->
+        <div class="mb-4">
+            <p><strong>Product:</strong> {{ product.prod_name }}</p>
+            <p><strong>Company:</strong> {{ product.name }}</p>
+            <p><strong>Price:</strong> ₹ {{ product.price }}</p>
+            <p><strong>Interest Rate:</strong> {{ interest }}% per annum</p>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                   {% if loan_error %}
+                        <div class="text-danger mt-1 small">
+                             {{ loan_error }}
+                         </div>
+                   {% endif %}
+                <label class="form-label">Loan Amount (₹)</label>
+                <input type="number"
+                       class="form-control w-75"
+                       name="loan_amount"
+                       min="1"
+                       required>
+            </div>
+         
+
+
+            <div class="mb-4">
+                <label class="form-label">Tenure (months)</label>
+                <input type="number"
+                       class="form-control w-75"
+                       name="tenure"
+                       min="1"
+                       required>
+            </div>
+
+            <div class="text-center">
+                <button class="btn btn-dark px-4">
+                    Calculate EMI
+                </button>
+            </div>
+        </form>
+
+        {% if emi %}
+        <div class="alert alert-success text-center mt-4">
+            <h5 class="mb-0">
+                Monthly EMI: <strong>₹ {{ emi }}</strong>
+            </h5>
+        </div>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}

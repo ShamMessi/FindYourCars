@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<!-- HERO SECTION -->
+<div class="text-center my-5">
+    <h1 class="display-4 fw-bold">Welcome To FindYourCars</h1>
+    <p class="lead mt-3">
+       FindYourCars is your ultimate destination for discovering, comparing, and choosing the perfect vehicle for your lifestyle.
+       We bring together detailed car specifications, prices, mileage, and key features to help you make smarter decisions faster.
+       With a clean interface and powerful insights, FindYourCars turns car hunting into a smooth, confident experience.
+    </p>
+</div>
+
+<!-- KEY POINTS SECTION -->
+<div class="container my-5">
+    <div class="row text-center g-4">
+
+        <!-- Box 1 -->
+        <div class="col-md-3">
+            <div class="card h-100 shadow-sm border-0 text-center p-3 hover-shadow">
+                <div class="card-body">
+                    <i class="fa-solid fa-car fa-3x mb-3 text-primary"></i>
+                    <h5 class="card-title fw-bold">Wide Selection</h5>
+                    <p class="card-text">Explore a large variety of car brands and models in one place.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Box 2 -->
+        <div class="col-md-3">
+            <div class="card h-100 shadow-sm border-0 text-center p-3 hover-shadow">
+                <div class="card-body">
+                    <i class="fa-solid fa-star fa-3x mb-3 text-warning"></i>
+                    <h5 class="card-title fw-bold">Trusted Reviews</h5>
+                    <p class="card-text">Get detailed reviews and ratings to help you make informed decisions.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Box 3 -->
+        <div class="col-md-3">
+            <div class="card h-100 shadow-sm border-0 text-center p-3 hover-shadow">
+                <div class="card-body">
+                    <i class="fa-solid fa-dollar-sign fa-3x mb-3 text-success"></i>
+                    <h5 class="card-title fw-bold">Accurate Pricing</h5>
+                    <p class="card-text">Find real market prices to plan your budget efficiently.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Box 4 -->
+        <div class="col-md-3">
+            <div class="card h-100 shadow-sm border-0 text-center p-3 hover-shadow">
+                <div class="card-body">
+                    <i class="fa-solid fa-lightbulb fa-3x mb-3 text-warning"></i>
+                    <h5 class="card-title fw-bold">Expert Advice</h5>
+                    <p class="card-text">Our team provides expert tips and guidance for your car journey.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+           
+</div>
+            <div class="d-flex justify-content-center gap-3 mt-3 ">
+                <a href="{% url 'company_list' %}" class="btn btn-sm btn-dark">
+                    Explore the Companies
+                </a>
+            </div>
+
+<style>
+
+</style>
+
+
+<!-- ADD SOME HOVER EFFECT -->
+<style>
+.hover-shadow:hover {
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2) !important;
+}
+
+</style>
+
+
+
+<!-- FONT AWESOME CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+{% endblock %}

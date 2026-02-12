@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}Add Product{% endblock %}
+
+{% block content %}
+
+<div class="container my-5 d-flex justify-content-center">
+
+    <div class="card shadow-lg p-5 animate-card"
+         style="width:70%; border-radius:22px;">
+
+        <h2 class="text-center fw-bold mb-4">
+            <i class="bi bi-box-seam"></i> Add New Product
+        </h2>
+
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- ROW 1 -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    {{ form.prod_name.label_tag }}
+                    {{ form.prod_name }}
+                </div>
+                <div class="col-md-6 mb-3">
+                    {{ form.color.label_tag }}
+                    {{ form.color }}
+                </div>
+            </div>
+
+            <!-- ROW 2 -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    {{ form.price.label_tag }}
+                    {{ form.price }}
+                </div>
+                <div class="col-md-6 mb-3">
+                    {{ form.est_year.label_tag }}
+                    {{ form.est_year }}
+                </div>
+            </div>
+
+            <!-- ROW 3 -->
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    {{ form.milage.label_tag }}
+                    {{ form.milage }}
+                </div>
+                <div class="col-md-6 mb-3">
+                    {{ form.name.label_tag }}
+                    {{ form.name }}
+                </div>
+            </div>
+
+            <!-- FULL WIDTH -->
+            <div class="mb-3">
+                {{ form.advantage.label_tag }}
+                {{ form.advantage }}
+            </div>
+
+            <div class="mb-4">
+                {{ form.prod_img.label_tag }}
+                {{ form.prod_img }}
+            </div>
+
+            <div class="text-center mt-4">
+                <button type="submit"
+                        class="btn btn-dark btn-lg px-5 rounded-pill btn-animate">
+                    <i class="bi bi-plus-circle"></i> Add Product
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<style>
+.animate-card {
+    animation: slideUp 0.6s ease;
+}
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+input, select, textarea {
+    border-radius: 10px !important;
+    padding: 8px 12px;
+
+
+}
+</style>
+
+{% endblock %}

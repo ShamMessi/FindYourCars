@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ company.name }} Details{% endblock %}
+
+{% block content %}
+
+<div class="container my-5">
+
+    <!-- COMPANY DETAILS -->
+    <div class="card shadow-sm mb-5 p-4" data-aos="fade-down">
+        <div class="row align-items-center">
+
+            <!-- LOGO -->
+            <div class="col-md-4 text-center">
+                {% if company.logo %}
+                    <img src="{{ company.logo.url }}" class="img-fluid" style="max-width:200px;">
+                {% else %}
+                    <p>No Logo</p>
+                {% endif %}
+            </div>
+
+            <!-- INFO -->
+            <div class="col-md-8">
+                <h2 class="fw-bold mb-2">
+                    <i class="bi bi-building"></i> {{ company.name }}
+                </h2>
+                <p>
+                    <i class="bi bi-person-badge"></i>
+                    <strong>CEO:</strong> {{ company.ceo }}
+                </p>
+                <p>
+                    <i class="bi bi-geo-alt"></i>
+                    <strong>Head Quarter:</strong> {{ company.head_quater }}
+                </p>
+            </div>
+
+        </div>
+
+        <div class="d-flex justify-content-center gap-3 mt-3">
+            <a href="{% url 'edit' pk=company.id %}" class="btn btn-sm btn-dark">Edit</a>
+            <a href="{% url 'delete_company' pk=company.id %}" class="btn btn-sm btn-dark">Delete</a>
+            <a href="{% url 'add_product' pk=company.id %}" class="btn btn-sm btn-dark">Add Product</a>
+        </div>
+    </div>
+
+    <!-- PRODUCTS HEADING -->
+    <h2 class="text-center fw-bold mb-4" data-aos="zoom-in">
+        <i class="bi bi-box-seam"></i>
+        {{ company.name }} Products Details
+    </h2>
+
+    <!-- PRODUCTS -->
+    {% for product in company.campany.all %}
+    <div class="card shadow-sm mb-4 p-4" data-aos="fade-up">
+
+        <!-- INFO ICON (ADDED) -->
+        <div class="text-end">
+            <a href="{% url 'emi' product.id %}"
+               class="text-muted fs-5"
+               title="Product information">
+                <i class="bi bi-info-circle"></i>
+            </a>
+        </div>
+
+        <div class="row align-items-center">
+
+            <!-- IMAGE -->
+            <div class="col-md-4 text-center">
+                {% if product.prod_img %}
+                    <img src="{{ product.prod_img.url }}"
+                         class="img-fluid rounded shadow mb-3"
+                         alt="{{ product.prod_name }}">
+                {% else %}
+                    <p class="text-muted">No image uploaded</p>
+                {% endif %}
+            </div>
+
+            <!-- DETAILS -->
+            <div class="col-md-8">
+                <h4 class="fw-bold mb-3">
+                    <i class="bi bi-car-front"></i> {{ product.prod_name }} 
+                </h4>
+
+                <p>
+                    <i class="bi bi-palette"></i>
+                    <strong>Color:</strong> {{ product.color }}
+                </p>
+
+                <p>
+                    <i class="bi bi-currency-rupee"></i>
+                    <strong>Price:</strong> {{ product.price }}
+                </p>
+
+                <p>
+                    <i class="bi bi-calendar-event"></i>
+                    <strong>Established Year:</strong> {{ product.est_year }}
+                </p>
+
+                <p>
+                    <i class="bi bi-speedometer2"></i>
+                    <strong>Mileage:</strong> {{ product.milage }} km
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    {% empty %}
+        <p class="text-center text-muted">No products available.</p>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

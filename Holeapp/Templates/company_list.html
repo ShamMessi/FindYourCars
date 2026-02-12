@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block title %}Companies{% endblock %}
+
+{% block content %}
+
+<div class="container my-5">
+
+    <!-- PAGE TITLE -->
+    <h2 class="text-center fw-bold mb-4" data-aos="zoom-in">
+        <i class="bi bi-buildings"></i> List of Companies
+    </h2>
+
+    <!-- SEARCH BAR -->
+    <div class="row justify-content-center mb-4">
+        <div class="col-md-6">
+            <input type="text"
+                   id="companySearch"
+                   class="form-control form-control-lg shadow-sm"
+                   placeholder="🔍 Search company name...">
+        </div>
+    </div>
+
+    <!-- BIG BOX -->
+    <div class="card shadow-lg p-4 rounded-4" style="background:#f8f9fa;">
+        <div class="row g-4" id="companyContainer">
+
+            {% for company in good %}
+            <div class="col-md-4 company-card" data-name="{{ company.name|lower }}">
+
+                <div class="card h-100 text-center border-0 shadow-sm company-hover">
+                    
+                    <!-- LOGO -->
+                    <div class="p-3">
+                        {% if company.logo %}
+                            <img src="{{ company.logo.url }}"
+                                 class="img-fluid mb-3"
+                                 style="max-height:120px;">
+                        {% else %}
+                            <p class="text-muted">No Logo</p>
+                        {% endif %}
+                    </div>
+
+                    <!-- NAME -->
+                    <div class="card-body">
+                        <h5 class="fw-bold">{{ company.name }}</h5>
+
+                        <a href="{% url 'company_detail' company.id %}"
+                           class="btn btn-outline-dark mt-3">
+                           View Details
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            {% empty %}
+                <p class="text-center text-muted">No companies found.</p>
+            {% endfor %}
+
+        </div>
+    </div>
+
+</div>
+
+<!-- SEARCH SCRIPT -->
+<script>
+document.getElementById("companySearch").addEventListener("keyup", function () {
+    let value = this.value.toLowerCase();
+    let cards = document.querySelectorAll(".company-card");
+
+    cards.forEach(card => {
+        let name = card.getAttribute("data-name");
+        card.style.display = name.includes(value) ? "block" : "none";
+    });
+});
+</script>
+
+{% endblock %}
